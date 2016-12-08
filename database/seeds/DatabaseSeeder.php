@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(AccessTableSeeder::class);
         $this->call(HistoryTypeTableSeeder::class);
-
+        $this->call(LocationTableSeeder::class);
+        
         Model::reguard();
     }
 }

@@ -2,6 +2,8 @@
 
 use Faker\Generator;
 use App\Models\Access\User\User;
+use App\Models\Location;
+use App\Models\Unit;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +24,23 @@ $factory->define(User::class, function (Generator $faker) {
         'email' => $faker->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(Location::class, function(Generator $faker) {
+    return [
+        'name' => $faker->company,
+        'address' => $faker->streetAddress,
+//        'province' => $faker->
+        'postal_code' => $faker->postcode,
+        'country' => $faker->country,
+        'lat' => $faker->latitude,
+        'lng' => $faker->longitude
+    ];
+});
+
+$factory->define(Unit::class, function(Generator $faker) {
+    return [
+        'price' => $faker->numberBetween(300, 1400),
     ];
 });
