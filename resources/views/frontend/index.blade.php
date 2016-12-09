@@ -5,18 +5,35 @@
         
         <div class="col-xs-4">
             <div class="panel panel-default">
-                <div class="panel-heading clearfix">
-                    <h3 class="panel-title pull-left">Available Units</h3>
-                    <a href="#" class="pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                <div class="panel-heading">
+                    <div class="clearfix">
+                        <h3 class="panel-title pull-left">Available Units</h3>
+                        <a href="#filters" class="pull-right" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="filters"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                    </div>
+                    <div id="filters" class="collapse">
+                        <p class="h5">Filters</p>
+                        <div class="checkbox">
+                            <label>
+                                {{ Form::checkbox('heat', true) }} Heat included
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                {{ Form::checkbox('electricity', true) }} Electricity included
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
-                    <div class="list-group">
-                    @forelse ($units as $unit) 
-                        <a href="#" class="list-group-item">{{ $unit->location->address }} - {{ $unit->type }} - ${{ $unit->price }}</a>
-                    @empty
-                        no units
-                    @endforelse
-                    </div>
+                    <div class="list-group" style="margin-bottom: 0;">
+                        @forelse ($units as $unit) 
+                        <a href="#" class="list-group-item">
+                            {{ $unit->location->address }} - ${{ $unit->price }}
+                            <br />Type: {{ $unit->type }}</a>
+                        @empty
+                            no units
+                        @endforelse
+                        </div>
                 </div>
                 <div class="panel-footer clearfix text-center">
                     <a href="#" class="pull-left"><span class="glyphicon glyphicon-backward"></span></a>
@@ -26,7 +43,7 @@
             </div>
         </div>
         <div class="col-xs-8">
-            <div id="map" style="height:500px;border-radius:4px;"></div>
+            <div id="map" style="height:500px;border-radius:4px;box-shadow:0 1px 1px rgba(0, 0, 0, 0.05);border:1px solid #d3e0e9"></div>
         </div>
         <?php /*
         <example></example>
