@@ -225,45 +225,6 @@
 @endsection
 
 @section('after-scripts-end')
-    <!--{{ Html::script('js/frontend/gmap.js', ['async', 'defer']) }}-->
-    <script>
-        if (typeof lat === 'undefined') {
-            var lat = 44.229811;
-        }
-
-        if (typeof lng === 'undefined') {
-            var lng = -76.4808145;
-        }
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: parseFloat(lat), lng: parseFloat(lng)},
-                zoom: 16
-            });
-
-            var infoWindow = new google.maps.InfoWindow({map: map});
-            infoWindow.close();
-
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var pos = {
-                      lat: position.coords.latitude,
-                      lng: position.coords.longitude
-                    };
-                    map.setCenter(pos);
-                }, function() {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            } else {
-                handleLocationError(false, infoWindow, map.getCenter());
-            }
-
-            google.maps.event.addListener(map, 'idle', function() {
-                console.log("moved");
-        //        loadMarkers(map.getBounds());
-            });
-        }
-
-    </script>
+    {{ Html::script('js/gmap.js', ['async', 'defer']) }}
     {{ Html::script('https://maps.googleapis.com/maps/api/js?key=AIzaSyCL_Eej0c8tpexdC27jXvXRyHPFC1CIIaw&callback=initMap', ['async', 'defer']) }}
 @endsection
