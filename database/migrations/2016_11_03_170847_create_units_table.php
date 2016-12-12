@@ -16,6 +16,8 @@ class CreateUnitsTable extends Migration
         Schema::create('units', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('location_id');
+            $table->string('name');
+            $table->text('description')->nullable();
             $table->string('price');
             $table->enum('type', ['apartment', 'house', 'room']);
             $table->enum('lease_type', ['full', 'sublet', 'assignment']);

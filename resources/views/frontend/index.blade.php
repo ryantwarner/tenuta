@@ -27,7 +27,7 @@
                 <div class="panel-body">
                     <div class="list-group" style="margin-bottom: 0;">
                         @forelse ($units as $unit) 
-                        <a href="#" class="list-group-item">
+                        <a href="{{ route('frontend.availabilities.unit', ['id' => $unit->availability->id]) }}" class="list-group-item">
                             {{ $unit->location->address }} - ${{ $unit->price }}
                             <br />Type: {{ $unit->type }}</a>
                         @empty

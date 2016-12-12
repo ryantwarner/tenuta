@@ -1,0 +1,21 @@
+#map {
+    border:1px solid #ddd;
+    border-radius:4px;
+    background-color:#f5f8fa;
+}
+.unit-listing #map {
+    width:100%;
+    height:300px;
+    margin-bottom:11px;
+}
+
+.modal-gallery {
+    list-style:none;
+    margin:0px;
+    padding:0px;
+}
+
+.modal-gallery .thumbnail {
+    width:100px;
+    height:100px;
+}

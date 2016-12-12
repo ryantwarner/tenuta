@@ -17,6 +17,7 @@
         @yield('before-styles-end')
 
         {{ Html::style(elixir('css/frontend.css')) }}
+        {{ Html::style('css/style.css') }}
 
         <!-- Check if the language is set to RTL, so apply the RTL layouts -->
         @langRTL
