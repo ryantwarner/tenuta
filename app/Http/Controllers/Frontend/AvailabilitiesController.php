@@ -30,6 +30,8 @@ class AvailabilitiesController extends Controller
     }
     
     public function apply(Request $request) {
-        return view('frontent.availabilities.apply');
+        return view('frontend.availabilities.apply')->with([
+            'unit' => Unit::with('location')->find($request->id)
+        ]);
     }
 }

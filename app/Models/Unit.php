@@ -13,4 +13,10 @@ class Unit extends Model
     public function location() {
         return $this->belongsTo('App\Models\Location');
     }
+    
+    public static function getAvailableUnitsInBounds($north, $east, $south, $west, $current_page = 0) {
+        return self::has('availability')->whereHas('location', function($location) use ($north, $east, $south, $west) {
+            $location->whereBetween('lat', [$south, $north])->whereBetween('lng', [$east, $west]);        
+        })->with('location')->paginate(10);
+    }
 }
