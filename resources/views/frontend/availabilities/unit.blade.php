@@ -58,7 +58,7 @@
             </div>
             <div class="panel-footer clearfix">
                 <a href="{{ route('frontend.index') }}" class="btn btn-default pull-left">Back</a>
-                <a href="{{ route('frontend.availabilities.apply', ['id' => $unit->availability->id]) }}" class="btn btn-primary pull-right">Apply Now!</a>
+                <a href="{{ route('frontend.application.apply', ['id' => $unit->availability->id]) }}" class="btn btn-primary pull-right">Apply Now!</a>
             </div>
         </div>
     </div><!--row-->

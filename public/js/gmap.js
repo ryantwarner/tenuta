@@ -27,6 +27,10 @@ function initUnitMap() {
 }
 
 function initMap() {
+    if (typeof(localStorage["saved_page"]) === "undefined") {
+        localStorage["saved_page"] = 1;
+    }
+    
     map = new google.maps.Map(document.getElementById('map'), settings);
 
     var infoWindow = new google.maps.InfoWindow({map: map});
@@ -87,7 +91,7 @@ function removeDeadMarkers(bounds) {
 
 function loadMarkers(bounds, page) {
     if (typeof(page) === "undefined") {
-        page = 1;
+        page = localStorage["saved_page"];
     }
     $.getJSON('/api/availabilities?page=' + page, bounds.toJSON(), function(response) {
         var availabilities = response.data;

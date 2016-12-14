@@ -10,7 +10,6 @@ Route::get('macros', 'FrontendController@macros')->name('macros');
 Route::group(['as' => 'availabilities.'], function() {
     Route::get('unit/{id}', 'AvailabilitiesController@unit')->name('unit');
     Route::get('unit/{id}/images/{filename}', 'AvailabilitiesController@image')->name('image');
-    Route::get('apply/{id}', 'AvailabilitiesController@apply')->name('apply');
 });
 
 /**

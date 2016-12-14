@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Unit;
+use App\Models\Access\User\User;
+
 
 class AvailabilitiesController extends Controller
 {
@@ -30,8 +33,6 @@ class AvailabilitiesController extends Controller
     }
     
     public function apply(Request $request) {
-        return view('frontend.availabilities.apply')->with([
-            'unit' => Unit::with('location')->find($request->id)
-        ]);
+        
     }
 }

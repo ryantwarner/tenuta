@@ -17,6 +17,7 @@ Route::get('lang/{lang}', 'LanguageController@swap');
 Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
 	require (__DIR__ . '/Frontend/Frontend.php');
 	require (__DIR__ . '/Frontend/Access.php');
+	require (__DIR__ . '/Frontend/Application.php');
 });
 
 /* ----------------------------------------------------------------------- */
