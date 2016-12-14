@@ -67,6 +67,14 @@ function updateNav() {
     }
 }
 
+function removeAllMarkers() {
+    for (var key in markers) {
+        markers[key].setMap(null);
+        delete markers[key];
+        delete nav[key];
+    }
+}
+
 function removeDeadMarkers(bounds) {
     for (var key in markers) {
         if (!bounds.contains(markers[key].getPosition())) {
@@ -77,14 +85,18 @@ function removeDeadMarkers(bounds) {
     }
 }
 
-function loadMarkers(bounds) {
-    $.getJSON('/api/availabilities', bounds.toJSON(), function(availabilities) {
+function loadMarkers(bounds, page) {
+    if (typeof(page) === "undefined") {
+        page = 1;
+    }
+    $.getJSON('/api/availabilities?page=' + page, bounds.toJSON(), function(response) {
+        var availabilities = response.data;
         for (var i = 0; i < availabilities.length; i++){
             var infowindow = new google.maps.InfoWindow();
 
             if (typeof markers[availabilities[i].id] === 'undefined') {
                 markers[availabilities[i].id] = new google.maps.Marker({
-                    position: new google.maps.LatLng(availabilities[i].lat, availabilities[i].lng),
+                    position: new google.maps.LatLng(availabilities[i].location.lat, availabilities[i].location.lng),
                     map: map
                 });
 
@@ -102,10 +114,30 @@ function loadMarkers(bounds) {
                 nav[availabilities[i].id] = availabilities[i];
             }
         }
-    }).done(function() {
+    }).done(function(response) {
+        $(".total-units").html(response.total);
+        $(".pagination-current").html(response.current_page);
+        $(".pagination-total").html(response.last_page);
+        $(".pagination-next").data("page", response.current_page + 1);
+        $(".pagination-prev").data("page", response.current_page - 1);
+        
         removeDeadMarkers(bounds);
         if (settings.has_nav === true) {
             updateNav();
         }
     });
 }
+
+$(".pagination-next, .pagination-prev").on("click", function(e) {
+    e.preventDefault();
+
+    localStorage["saved_page"] = $(this).data("page");
+
+    if (
+            ($(this).hasClass("pagination-prev") && $(this).data("page") >= 1) || 
+            ($(this).hasClass("pagination-next") && $(this).data("page") <= $(".pagination-total").html())
+        ) {
+        removeAllMarkers();
+        loadMarkers(map.getBounds(), $(this).data("page"));
+    }
+});

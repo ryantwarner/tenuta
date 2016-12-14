@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="clearfix">
-                        <h3 class="panel-title pull-left">Available Units</h3>
+                        <h3 class="panel-title pull-left">Available Units: <span class="total-units"></span></h3>
                         <a href="#filters" class="pull-right" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="filters"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                     </div>
                     <div id="filters" class="collapse">
@@ -30,9 +30,12 @@
                     </div>
                 </div>
                 <div class="panel-footer clearfix text-center">
-                    <a href="#" class="pull-left"><span class="glyphicon glyphicon-backward"></span></a>
-                    1 - 10 of 300
-                    <a href="#" class="pull-right"><span class="glyphicon glyphicon-forward"></span></a>
+                    <a href="#" class="pagination-prev pull-left"><span class="glyphicon glyphicon-backward"></span></a>
+                    Page 
+                    <span class="pagination-current"></span>
+                    of 
+                    <span class="pagination-total"></span>
+                    <a href="#" class="pagination-next pull-right"><span class="glyphicon glyphicon-forward"></span></a>
                 </div>
             </div>
         </div>
