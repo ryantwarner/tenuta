@@ -10,7 +10,7 @@ use App\Models\Unit;
 class AvailabilitiesController extends Controller
 {
     public function index(Request $request) {
-        $availabilities = Unit::getAvailableUnitsInBounds($request->north, $request->east, $request->south, $request->west)->paginate(3);
+        $availabilities = Unit::getAvailableUnitsInBounds($request->north, $request->east, $request->south, $request->west)->paginate(config('app.units_per_page'));
         
         return response()->json($availabilities);
     }
